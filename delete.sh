@@ -8,7 +8,6 @@ NC='\033[0m' # No Color
 read -p "Enter the username: " username
 echo -e "Verifying username: ${GREEN}${username}${NC}"
 if id "$username" &>/dev/null; then
-    echo -e "${YELLOW}Username $username exists${NC}"
     userdel -r "$username" # Delete the user and its home directory
     echo -e "${GREEN}User $username and associated home directory deleted${NC}"
 else
