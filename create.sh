@@ -45,6 +45,14 @@ if id "$username" &>/dev/null; then
 else
     echo -e "${GREEN}Username $username does not exist${NC}"
     mkdir -p "/home/$domain/public_html" "/home/$domain/logs" "/home/$domain/email"
-    useradd -d "/home/$domain" -m "$username"
-    echo -e "${GREEN}User $username created${NC}"
+echo "<?php
+date_default_timezone_set('Asia/Kolkata');
+echo 'Current date and time is ' . date('Y-m-d H:i:s');
+echo '<hr>';
+phpinfo();
+?>" > "/home/$domain/public_html/info.php"
+echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
+
+useradd -d "/home/$domain" -m "$username"
+echo -e "${GREEN}User $username created${NC}"
 fi
