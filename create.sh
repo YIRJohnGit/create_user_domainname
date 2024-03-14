@@ -16,16 +16,23 @@ else
     exit 1
 fi
 
-read -p "Enter the username: " username
+read -p "Enter the username (leave empty for default): " username_input
+if [[ -z "$username_input" ]]; then
+    # Set default username
+    first_word=$(echo "$domain" | cut -d'.' -f1)
+    username="${first_word}"
+    echo -e "${YELLOW}Default username set: ${username}${NC}"
+else
+    username="$username_input"
+fi
+
 
 echo -e "Verifying username: ${GREEN}${username}${NC}"
 if id "$username" &>/dev/null; then
     echo -e "${RED}Username $username already exists${NC}"
     echo -e "${YELLOW}Auto Suggestion of Username $username already exists${NC}"
-    first_word=$(echo "$domain" | cut -d'.' -f1)
     random_suffix=$(openssl rand -hex 4)
-
-    username="${first_word}${random_suffix}"
+    username="${username}${random_suffix}"
     echo -e "Generated username: ${GREEN}${username}${NC}"
 else
     echo -e "${GREEN}Username $username does not exist${NC}"
