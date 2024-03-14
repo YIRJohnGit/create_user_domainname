@@ -10,7 +10,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/delete.sh)
 ```
 
-***...for Creating AAuto Users and the Domain***
+***...for Creating Auto Users and the Domain (depreciated)***
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/create_user_domainname/main/auto_user_name.sh)
 ```
