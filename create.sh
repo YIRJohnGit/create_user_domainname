@@ -45,7 +45,7 @@ if id "$username" &>/dev/null; then
 else
     echo -e "${GREEN}Username $username does not exist${NC}"
     mkdir -p "/home/$domain/public_html" "/home/$domain/logs" "/home/$domain/email"
-    echo "$username" > "/home/$domain/$username"
+    echo "$username" > "/home/$domain/$username.usr"
 echo "<?php
 date_default_timezone_set('Asia/Kolkata');
 echo 'Current date and time is ' . date('Y-m-d H:i:s');
