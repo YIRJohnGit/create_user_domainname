@@ -2,8 +2,7 @@
 
 ***...for creating new user and domain specifc folder name***
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/create_user_domainname/main/create_user.sh)
-```
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.sh)```
 
 ***...for Deleting the user and Folder***
 ```
