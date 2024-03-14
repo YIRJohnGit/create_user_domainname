@@ -2,7 +2,7 @@
 
 ***...for creating new user and domain specifc folder name***
 ```
-bash <(curl -sSLhttps://raw.githubusercontent.com/YIRJohnGit/create_user_domainname/main/create_user.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/create_user_domainname/main/create_user.sh)
 ```
 
 ***...for Creating AAuto Users and the Domain***
