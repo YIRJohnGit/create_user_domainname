@@ -29,23 +29,44 @@ fi
 echo -e "Verifying username: ${GREEN}${username}${NC}"
 if id "$username" &>/dev/null; then
     echo -e "${RED}Username $username already exists${NC}"
-else
-    echo -e "${GREEN}Username $username does not exist${NC}"
     first_word=$(echo "$domain" | cut -d'.' -f1)
     random_suffix=$(openssl rand -hex 4) 
     username="${first_word}${random_suffix}"
+    echo -e "${YELLOW}new auto generated username $username ${NC}"
+else
+    echo -e "${GREEN}Username $username does not exist${NC}"
 fi
 
-mkdir -p "/home/$domain/public_html" "/home/$domain/logs" "/home/$domain/email"
-echo "$username" > "/home/$domain/$username.usr"
-echo "<?php
-date_default_timezone_set('Asia/Kolkata');
-echo 'Current date and time is ' . date('Y-m-d H:i:s');
-echo '<hr>';
-phpinfo();
-?>" > "/home/$domain/public_html/info.php"
-echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
+# Prompt for user creation
+read -p "Do you want to create user $username? (Y/N): " create_user_response
 
-useradd -d "/home/$domain" -m "$username"
-chown -R $username:$username "/home/$domain"
-echo -e "${GREEN}User $username created${NC}"
+# Check user response and proceed accordingly
+if [[ "$create_user_response" =~ ^(Y|y|YES|yes|Yes)$ ]]; then
+    # Create user with specified username and home directory
+    useradd -m -d "/home/$domain" "$username"
+    echo -e "${GREEN}User $username created${NC}"
+
+    # Create custom folders for the user
+    mkdir -p "/home/$domain/public_html" "/home/$domain/logs" "/home/$domain/email"
+
+    # Create user-specific file
+    echo "$username" > "/home/$domain/$username.usr"
+
+    # Create info.php file with PHP info
+    echo "<?php
+    date_default_timezone_set('Asia/Kolkata');
+    echo 'Current date and time is ' . date('Y-m-d H:i:s');
+    echo '<hr>';
+    phpinfo();
+    ?>" > "/home/$domain/public_html/info.php"
+
+    # Create index.html file for the user
+    echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
+
+    # Set ownership of home directory to the user
+    chown -R $username:$username "/home/$domain"
+
+    echo -e "${GREEN}User $username setup complete${NC}"
+else
+    echo -e "${YELLOW}User creation cancelled${NC}"
+fi
