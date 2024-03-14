@@ -55,5 +55,6 @@ phpinfo();
 echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
 
 useradd -d "/home/$domain" -m "$username"
+chown -R $username:$username /home/$domain
 echo -e "${GREEN}User $username created${NC}"
 fi
