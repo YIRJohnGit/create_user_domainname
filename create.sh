@@ -20,8 +20,7 @@ read -p "Enter the username (leave empty for default): " username_input
 if [[ -z "$username_input" ]]; then
     # Set default username
     first_word=$(echo "$domain" | cut -d'.' -f1)
-    random_suffix=$(openssl rand -hex 4)
-    username="${first_word}${random_suffix}"
+    username="${first_word}"
     echo -e "${YELLOW}Default username set: ${username}${NC}"
 else
     username="$username_input"
@@ -30,9 +29,11 @@ fi
 echo -e "Verifying username: ${GREEN}${username}${NC}"
 if id "$username" &>/dev/null; then
     echo -e "${RED}Username $username already exists${NC}"
-    exit 1
 else
     echo -e "${GREEN}Username $username does not exist${NC}"
+    first_word=$(echo "$domain" | cut -d'.' -f1)
+    random_suffix=$(openssl rand -hex 4) 
+    username="${first_word}${random_suffix}"
 fi
 
 mkdir -p "/home/$domain/public_html" "/home/$domain/logs" "/home/$domain/email"
