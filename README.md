@@ -7,7 +7,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/create_user_domain
 
 ***...for Deleting the user and Folder***
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/create_user_domainname/main/delete_user.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/delete.sh)
 ```
 
 ***...for Creating AAuto Users and the Domain***
