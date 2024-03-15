@@ -159,18 +159,22 @@ else
     exit 1
 fi
 
-# Restart php-fpm
-if sudo systemctl restart php${php_version}-php-fpm; then
-    color_echo "green"  "php-fpm restarted successfully"
-else
-    color_echo "red"  "php-fpm restart failed, exiting..."
-    exit 1
+if [ "$php_confirmation" == "y" ]; then
+    # Restart php-fpm
+    if sudo systemctl restart php${php_version}-php-fpm; then
+        color_echo "green"  "php-fpm restarted successfully"
+    else
+        color_echo "red"  "php-fpm restart failed, exiting..."
+        exit 1
+    fi
 fi
 
-# Check php-fpm status
-if sudo systemctl status php${php_version}-php-fpm; then
-    color_echo "green"  "php-fpm status check successful"
-else    
-    color_echo "red" "php-fpm status check failed, exiting..."
-    exit 1
+if [ "$php_confirmation" == "y" ]; then
+    # Check php-fpm status
+    if sudo systemctl status php${php_version}-php-fpm; then
+        color_echo "green"  "php-fpm status check successful"
+    else    
+        color_echo "red" "php-fpm status check failed, exiting..."
+        exit 1
+    fi
 fi
