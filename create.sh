@@ -64,7 +64,9 @@ if [[ "$create_user_response" =~ ^(Y|y|YES|yes|Yes)$ ]]; then
     echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
 
     # Set ownership of home directory to the user
-    chown -R $username:$username "/home/$domain"
+    chown -R $username:purtainet "/home/$domain"
+    find /home/$domain -type d -exec chmod 755 {} \;
+    find /home/$domain -type f -exec chmod 644 {} \;
 
     echo -e "${GREEN}User $username setup complete${NC}"
 else
