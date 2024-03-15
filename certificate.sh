@@ -63,12 +63,14 @@ done
 
 # Ask if "www" should be added to the domain
 read -p "Do you want to add 'www' to your domain? (y/n): " ADD_WWW
+
 if [[ $ADD_WWW == "y" ]]; then
   sudo certbot certonly --webroot -v --cert-name $DOMAIN --domains $DOMAIN --domains www.$DOMAIN --agree-tos --no-eff-email --email admin@$DOMAIN --hsts --uir --webroot-path $DOCUMENT_ROOT --rsa-key-size 2048 --non-interactive --preferred-challenges http
-      print_success "Certificate obtained successfully!"
-else if [[ $ADD_WWW == "n" ]]; then
+  print_success "Certificate obtained successfully!"
+elif [[ $ADD_WWW == "n" ]]; then
   sudo certbot certonly --webroot -v --cert-name $DOMAIN --domains $DOMAIN --agree-tos --no-eff-email --email admin@$DOMAIN --hsts --uir --webroot-path $DOCUMENT_ROOT --rsa-key-size 2048 --non-interactive --preferred-challenges http
-      print_success "Certificate obtained successfully!"
+  print_success "Certificate obtained successfully!"
 else
   print_error "Error executing certbot command. Please check your inputs and try again."
 fi
+
