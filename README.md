@@ -4,6 +4,13 @@
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.sh)
 ```
+
+***...for creating apache virtual host for Ubuntu / Debian***
+```
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/apache_virtual_host.sh)
+```
+
+
 ***...for Creating the SSL Certificate***
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/certificate.sh)
