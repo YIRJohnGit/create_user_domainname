@@ -65,8 +65,17 @@ if [[ "$create_user_response" =~ ^(Y|y|YES|yes|Yes)$ ]]; then
 
     # Set ownership of home directory to the user
     chown -R $username:purtainet "/home/$domain"
+
+    # Change permissions of directories to drwxr-xr-x (755)
     find /home/$domain -type d -exec chmod 755 {} \;
+    # Change permissions of files to -rw-r--r-- (644)
     find /home/$domain -type f -exec chmod 644 {} \;
+
+    # Change permissions of logs directories to drwxr-x---
+    find /home/$domain/logs -type d -exec chmod 750 {} \;
+    # Change permissions of logs files to -rw-r-----
+    find /home/$domain/logs -type f -exec chmod 640 {} \;
+
 
     echo -e "${GREEN}User $username setup complete${NC}"
 else
