@@ -4,16 +4,18 @@
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.sh)
 ```
+***...for Creating the SSL Certificate***
+```
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/certificate.sh)
+```
 
 ***...for Deleting the user and Folder***
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/delete.sh)
 ```
 
-***...for Creating the SSL Certificate***
-```
-bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/certificate.sh)
-```
+
+
 
 ***...for Creating Auto Users and the Domain (depreciated)***
 ```
