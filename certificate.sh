@@ -62,7 +62,7 @@ read -p "Do you want to add 'www' to your domain? (y/n): " add_www
 
 if [[ $add_www == "y" ]]; then
   # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email admin@$domain --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http
-  sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --cert-request "-subj '/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain'"
+  # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --cert-request "-subj '/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain'"
   sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --csr <(openssl req -new -newkey rsa:2048 -nodes -keyout /etc/letsencrypt/live/$domain/privkey.pem -out /etc/letsencrypt/live/$domain/csr.pem -subj "/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain")
 
   
