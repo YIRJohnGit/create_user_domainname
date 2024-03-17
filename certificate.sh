@@ -53,7 +53,7 @@ validate_document_root() {
 
 # Ask for document root path
 while true; do
-    document_root=$(read_input "Enter the document root path for your domain")
+    document_root=$(read_input "Enter the document root path for your domain [/home/devops.purtainet.com/public_html] ")
     validate_document_root "$document_root" && break
 done
 
@@ -63,6 +63,12 @@ read -p "Do you want to add 'www' to your domain? (y/n): " add_www
 if [[ $add_www == "y" ]]; then
   # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email admin@$domain --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http
   sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --cert-request "-subj '/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain'"
+  sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --csr <(openssl req -new -newkey rsa:2048 -nodes -keyout /etc/letsencrypt/live/$domain/privkey.pem -out /etc/letsencrypt/live/$domain/csr.pem -subj "/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain")
+
+  
+  # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --csr <(openssl req -new -newkey rsa:2048 -nodes -keyout /path/to/domain.key -out /path/to/domain.csr -subj "/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain")
+
+  # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --csr <(openssl req -new -newkey rsa:2048 -nodes -keyout /path/to/domain.key -out /path/to/domain.csr -subj "/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=devops.purtainet.com")
 
   print_success "Certificate obtained successfully!"
 elif [[ $add_www == "n" ]]; then
