@@ -60,6 +60,27 @@ done
 # Ask if "www" should be added to the domain
 read -p "Do you want to add 'www' to your domain? (y/n): " add_www
 
+
+
+
+# Define the webroot directory
+WEBROOT_DIR="${document_root}"
+
+# Create the .well-known/acme-challenge directory
+mkdir -p "$WEBROOT_DIR/.well-known/acme-challenge"
+
+# Add a test file to verify access
+echo "This is a test file to verify access" > "$WEBROOT_DIR/.well-known/acme-challenge/test.txt"
+
+# Start a simple web server to serve the files
+python3 -m http.server 80 --directory "$WEBROOT_DIR/.well-known/acme-challenge"
+
+
+
+
+
+
+
 if [[ $add_www == "y" ]]; then
   # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email admin@$domain --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http
   # sudo certbot certonly --webroot -v --cert-name $domain --domains $domain --domains www.$domain --agree-tos --no-eff-email --email yirjohn@gmail.com --hsts --uir --webroot-path $document_root --rsa-key-size 2048 --non-interactive --preferred-challenges http --cert-request "-subj '/C=IN/ST=Karnataka/L=Bengaluru/O=MN Service Providers/OU=IT Solutions/CN=$domain'"
