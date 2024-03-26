@@ -16,6 +16,11 @@ bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/apache_
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/certificate.sh)
 ```
 
+***..for creating the sudo terminal user***
+```
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/debian_1st_up.sh)
+```
+
 ***...for Deleting the user and Folder***
 ```
 bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/delete.sh)
