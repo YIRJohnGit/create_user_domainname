@@ -51,6 +51,9 @@ create_apache_config()
         echo "</VirtualHost>"
     } > "$http_config"
 
+    sudo bash -c 'echo "<h1>....Initiated</h1><hr><h3>Local IP Address $(hostname -I)</h3>" > "$folder_location"/public_html/index.html'
+}
+
 # Input variables
 color_echo "yellow" "...for configuration apache web server with http only"
 
