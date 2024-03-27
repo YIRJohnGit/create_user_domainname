@@ -9,7 +9,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.
 
 ***...for creating new apache2 configuration for url check with index.html***
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/create.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/YIRJohnGit/users/main/apache2_http.sh)
 ```
 
 ***...for creating apache virtual host for Ubuntu / Debian***
