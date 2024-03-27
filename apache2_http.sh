@@ -50,3 +50,20 @@ create_apache_config()
         
         echo "</VirtualHost>"
     } > "$http_config"
+
+# Input variables
+color_echo "yellow" "...for configuration apache web server with http only"
+
+# Input variables
+color_echo "yellow" "Enter the domain name (e.g., cp.mnsp.co.in):"
+read domain_name
+
+color_echo "yellow" "Enter the folder location (e.g., /home/cp.mnsp.co.in):"
+read folder_location
+
+color_echo "yellow" "Enter the user name (e.g., cp / yiradmin):"
+read user_name
+
+create_apache_config $domain_name  $folder_location $user_name
+ls -la  $folder_location
+ls -la
