@@ -62,6 +62,8 @@ if [[ "$create_user_response" =~ ^(Y|y|YES|yes|Yes)$ ]]; then
 
     # Create index.html file for the user
     echo "<h1>....Initiated</h1>" > "/home/$domain/public_html/index.html"
+    sudo bash -c 'echo "<h1>....Initiated</h1><hr><h3>Local IP Address $(hostname -I) @ $(hostname -f)</h3>" > "/home/$domain/public_html/index.html"'
+
 
     # Set ownership of home directory to the user
     chown -R $username:purtainet "/home/$domain"
